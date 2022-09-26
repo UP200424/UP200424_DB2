@@ -1,0 +1,34 @@
+--Derek Gilberto Ramírez López UP200424 ISC06B 
+----------------------EJERCICIOS EXPRESIONES REGULARES
+
+--de first_name, traer los que tengan dos vocales juntas
+select first_name
+from employees
+where REGEXP_LIKE(first_name, '[aeiou]{2}.*');
+
+--mostrar numero de palabras en comments 
+select comments, REGEXP_COUNT(comments, ' ')+1 as numwords
+from d_play_list_items;
+
+--show number of words in department_name
+select department_name, REGEXP_COUNT(department_name, ' ')+1 as numwords
+from departments;
+
+--show the vowels replaced by a period in first_name
+select first_name, REGEXP_REPLACE(first_name, '[aeiou]', '.')
+from employees;
+
+--show two dofferent vowels together in last_name
+select last_name
+from employees
+where REGEXP_LIKE (last_name, '([aeiou])\1');
+
+--show first_name with vowels on first and fourth position
+select first_name
+from employees
+where REGEXP_LIKE(first_name, '^[aeiou]..[aeiou].*','i');
+
+--show street_address in locations, start with letter, end with number
+select street_address 
+from locations
+where REGEXP_LIKE (street_address, '^[a-z].*\d$','i');
